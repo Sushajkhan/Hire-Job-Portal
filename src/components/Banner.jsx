@@ -15,6 +15,7 @@ const Banner = ({ query, handleInputChange }) => {
               and fulltime jobs.
             </p>
           </div>
+
           <form>
             <div className="flex justify-start md:flex-row flex-col md:gap-0 gap-4">
               <div className="flex md:rounded-s-md rounded shadow-sm ring-1 ring-inset ring-gray-300  md:w-1/2 w-full ">
