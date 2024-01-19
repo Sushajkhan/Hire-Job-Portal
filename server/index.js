@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const routes = require("./routes/jobRoutes");
 dotenv.config();
 
 const app = express();
@@ -28,6 +29,7 @@ const connectDB = async () => {
 //middlewares
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(routes);
 
 app.listen(port, () => {
   connectDB();

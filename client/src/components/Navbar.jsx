@@ -10,10 +10,12 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { path: "/", title: "Start a search" },
-    { path: "/my-job", title: "My Jobs" },
-    { path: "/salary", title: "Salary Estimate" },
-    { path: "/post-job", title: "Post A Job" },
+    { path: "/", title: "Home" },
+    { path: "/find-jobs", title: "Find Jobs" },
+
+    { path: "/myjobs", title: "My Jobs" },
+    { path: "/post-job", title: "Upload A Job" },
+    { path: "/about", title: "About Us" },
   ];
 
   return (

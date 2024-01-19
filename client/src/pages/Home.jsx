@@ -5,6 +5,7 @@ import JobCard from "../components/JobCard";
 import Jobs from "./Jobs";
 import Sidebar from "../components/Sidebar";
 import NewsLetter from "../components/NewsLetter";
+import FeaturedCompanies from "../components/FeaturedCompanies";
 
 const Home = () => {
   const [selectedCategory, setSelecetedCategory] = useState(null);
@@ -103,8 +104,7 @@ const Home = () => {
     <>
       <Navbar />
       <Banner query={query} handleInputChange={handleInputChange} />
-
-      <div className="bg-background md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
+      <div className="bg-background md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12 ">
         <div className="bg-white p-4 rounded">
           <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>

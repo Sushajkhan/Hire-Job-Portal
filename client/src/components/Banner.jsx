@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { FiMapPin, FiSearch } from "react-icons/fi";
+import { Link, NavLink } from "react-router-dom";
+import FindJobs from "../pages/FindJobs";
 
 const Banner = ({ query, handleInputChange }) => {
   return (
-    <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14">
+    <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14 mb-32">
       <div className="flex justify-between ">
         <div className="flex justify-around flex-col  ">
           <div>
-            <h1 className="text-5xl font-bold text-primary mb-3">
-              Find your <span className="text-green">new job</span> today
+            <h1 className="text-5xl  font-bold text-primary mb-8">
+              Find A <span className="text-green">Job</span> that <br />
+              <span className="text-green">Matches</span> Your <br />
+              Passion
             </h1>
-            <p className="text-lg text-text mb-8">
+            <p className="text-lg text-text mb-2">
               Hire is your one-stop-centre for thousands of digital freelance
               and fulltime jobs.
             </p>
@@ -41,7 +45,7 @@ const Banner = ({ query, handleInputChange }) => {
                 <FiMapPin className="absolute mt-2.5 ml-2 text-gray-400" />
               </div>
               <button type="submit" className="bg-green text-white py-2 px-8 ">
-                Search
+                <Link to="/find-jobs">Search</Link>
               </button>
             </div>
           </form>

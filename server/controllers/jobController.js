@@ -1,0 +1,56 @@
+const { default: mongoose } = require("mongoose");
+const Job = require("../models/Job");
+
+const getJobs = async (req, res) => {
+  try {
+    const jobs = await Job.find();
+    res.status(200).send(job);
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
+};
+
+const getJob = async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(422).json({ error: "Parameter is not a valid" });
+    }
+    const job = await Job.findById(req.params.id);
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+    res.status(200).send(job);
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
+};
+
+const createJob = async (req, res) => {
+  try {
+    if (!req.body.companyName) {
+      return res.status(422).json({ error: "Company Name is required" });
+    }
+    const job = await Job.create(req.body);
+    res.status(201).send(job);
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
+};
+
+const updateJob = async (req, res) => {
+  try {
+    const { _id, text } = req.body;
+    const job = await Job.findByIdAndUpdate(_id, { text });
+    res.send(job);
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
+};
+
+const deleteJob = async (req, res) => {
+  const { _id } = req.body;
+  const job = await Job.findByIdAndDelete(_id);
+  res.send("deleted");
+};
+
+module.exports = { getJobs, getJob, createJob, updateJob, deleteJob };
