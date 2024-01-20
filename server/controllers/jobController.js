@@ -4,7 +4,7 @@ const Job = require("../models/Job");
 const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
-    res.status(200).send(job);
+    res.status(200).send(jobs);
   } catch (error) {
     return res.status(500).json({ err: error.message });
   }
@@ -39,18 +39,33 @@ const createJob = async (req, res) => {
 
 const updateJob = async (req, res) => {
   try {
-    const { _id, text } = req.body;
-    const job = await Job.findByIdAndUpdate(_id, { text });
-    res.send(job);
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(422).json({ error: "Parameter is not a valid" });
+    }
+
+    if (!(await Job.exists({ _id: req.params.id }))) {
+      return res.status(422).json({ error: "Job not found" });
+    }
+
+    const id = req.params.id;
+    const text = req.body;
+    const jobUpdated = await Job.findByIdAndUpdate(id, text, { new: true });
+    res.send(jobUpdated);
   } catch (error) {
     return res.status(500).json({ err: error.message });
   }
 };
 
 const deleteJob = async (req, res) => {
-  const { _id } = req.body;
-  const job = await Job.findByIdAndDelete(_id);
-  res.send("deleted");
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(422).json({ error: "Parameter is not a valid" });
+    }
+    const job = await Job.findByIdAndDelete(req.params.id);
+    res.status(204).send("deleted");
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
 };
 
 module.exports = { getJobs, getJob, createJob, updateJob, deleteJob };
