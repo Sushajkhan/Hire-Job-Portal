@@ -9,6 +9,8 @@ export default {
         text: "#6C6C6C",
         white: "#FFFFFF",
         background: "#EFEFEF",
+        blue: "#1F51FF",
+        red: "#FF0000	",
       },
     },
   },

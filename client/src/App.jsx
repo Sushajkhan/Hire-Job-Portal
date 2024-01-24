@@ -6,6 +6,8 @@ import PostJob from "./components/PostJob";
 import FindJobs from "./pages/FindJobs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import MyJobs from "./pages/MyJobs";
+import UpdateJob from "./pages/UpdateJob";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/post-job" element={<PostJob />} />
 
           <Route path="/about" element={<About />} />
+          <Route path="/myjobs" element={<MyJobs />} />
+          <Route path="edit-job/:id" element={<UpdateJob />} />
         </Routes>
       </BrowserRouter>
     </>

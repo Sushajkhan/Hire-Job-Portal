@@ -22,7 +22,7 @@ const jobSchema = new Schema(
       type: Number,
       required: true,
     },
-    salaryType: {
+    jobType: {
       type: String,
       required: true,
     },
@@ -38,10 +38,7 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    employmentType: {
-      type: String,
-      required: true,
-    },
+
     description: {
       type: String,
       required: true,
@@ -50,6 +47,14 @@ const jobSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    postedBy: {
+      type: String,
+      required: true,
+    },
+    applicationDeadline: {
+      type: Date,
+      required: true,
     },
   },
   {
