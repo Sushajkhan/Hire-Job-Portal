@@ -52,6 +52,7 @@ const MyJobs = () => {
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/jobs/${id}`, { method: "DELETE" });
+    setJobs(jobs.filter((job) => job._id !== id));
   };
 
   return (

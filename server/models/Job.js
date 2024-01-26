@@ -43,7 +43,7 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    joblink: {
+    jobLink: {
       type: String,
       required: true,
       unique: true,

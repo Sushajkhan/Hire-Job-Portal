@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MyJobs from "./pages/MyJobs";
 import UpdateJob from "./pages/UpdateJob";
+import JobDetails from "./pages/JobDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/myjobs" element={<MyJobs />} />
           <Route path="edit-job/:id" element={<UpdateJob />} />
+          <Route path="view-job/:id" element={<JobDetails />} />
         </Routes>
       </BrowserRouter>
     </>

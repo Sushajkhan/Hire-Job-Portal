@@ -8,23 +8,26 @@ const PostJob = () => {
     companyName: "",
     minSalary: "",
     maxSalary: "",
-    salaryType: "",
     jobLocation: "",
     postingDate: "",
     experienceLevel: "",
-    employmentType: "",
+    jobType: "",
     companylogo: "",
     description: "",
+    postedBy: "",
+    applicationDeadline: "",
+    joblink: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    fetch(`http://localhost:5000/jobs/${id}`, { method: "POST" });
   };
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log(formData);
+
   return (
     <div>
       <Navbar />
@@ -79,23 +82,20 @@ const PostJob = () => {
 
             <div className="post-job-row">
               <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">Salary Type</label>
-                <select
-                  name="salaryType"
-                  className="post-job-input"
-                  onChange={onChange}
-                >
-                  <option value="hourly">Hourly</option>
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </div>
-              <div className="lg:w-1/2 w-full">
                 <label className="post-input-label">Job Location</label>
                 <input
                   className="post-job-input"
                   type="text"
                   name="jobLocation"
+                  onChange={onChange}
+                />
+              </div>
+              <div className="lg:w-1/2 w-full">
+                <label className="post-input-label">Job Link</label>
+                <input
+                  className="post-job-input"
+                  type="text"
+                  name="jobLink"
                   onChange={onChange}
                 />
               </div>
@@ -118,7 +118,11 @@ const PostJob = () => {
                   className="post-job-input"
                   onChange={onChange}
                 >
-                  <option value="intership">Intership</option>
+                  <option value="fresher">Fresher</option>
+                  <option value="2year">0-2 Years</option>
+                  <option value="5year">2-5 Years</option>
+                  <option value="10year">5-10 Years</option>
+
                   <option value="anyExperience">Any experience</option>
                 </select>
               </div>
@@ -135,13 +139,15 @@ const PostJob = () => {
                 />
               </div>
               <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">Employment Type</label>
+                <label className="post-input-label">Job Type</label>
                 <select
-                  name="employmentType"
+                  name="jobType"
                   className="post-job-input"
                   onChange={onChange}
                 >
                   <option value="intern">Intern</option>
+
+                  <option value="remote">Remote</option>
                   <option value="partTime">Part-Time</option>
 
                   <option value="fullTime">Full-Time</option>
@@ -158,9 +164,29 @@ const PostJob = () => {
                 onChange={onChange}
               />
             </div>
-
+            <div className="post-job-row">
+              <div className="lg:w-1/2 w-full">
+                <label className="post-input-label">Posted By</label>
+                <input
+                  className="post-job-input"
+                  type="text"
+                  name="companyName"
+                  onChange={onChange}
+                />
+              </div>
+              <div className="lg:w-1/2 w-full">
+                <label className="post-input-label">Application Deadline</label>
+                <input
+                  className="post-job-input"
+                  type="date"
+                  name="applicationDeadline"
+                  onChange={onChange}
+                />
+              </div>
+            </div>
             <button
               type="submit"
+              onClick={handleSubmit}
               className=" block mt-12 px-8 py-2 border w-28  bg-black rounded-sm text-white cursor-pointer font-semibold "
             >
               Submit
