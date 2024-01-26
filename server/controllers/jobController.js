@@ -1,6 +1,23 @@
 const mongoose = require("mongoose");
 const Job = require("../models/Job");
 
+const createJob = async (req, res) => {
+  try {
+    if (!req.body.companyName) {
+      return res.status(422).json({ error: "Company Name is required" });
+    }
+
+    if (await Job.findOne({ jobLink: req.body.jobLink })) {
+      return res.status(409).json({ error: "job already exists" });
+    }
+    const newJob = new Job(req.body);
+    await newJob.save();
+    res.status(201).send(newJob);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
@@ -22,22 +39,6 @@ const getJob = async (req, res) => {
     res.status(200).send(job);
   } catch (error) {
     return res.status(500).json({ err: error.message });
-  }
-};
-
-const createJob = async (req, res) => {
-  try {
-    if (!req.body.companyName) {
-      return res.status(422).json({ error: "Company Name is required" });
-    }
-
-    if (await Job.findOne({ jobLink: req.body.jobLink })) {
-      return res.status(409).json({ error: "job already exists" });
-    }
-    const job = await Job.create(req.body);
-    res.status(201).send(job);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
   }
 };
 
