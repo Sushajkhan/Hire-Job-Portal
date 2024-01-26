@@ -31,7 +31,7 @@ const createJob = async (req, res) => {
       return res.status(422).json({ error: "Company Name is required" });
     }
 
-    if (await Job.findOne({ joblink: req.body.joblink })) {
+    if (await Job.findOne({ jobLink: req.body.jobLink })) {
       return res.status(409).json({ error: "job already exists" });
     }
     const job = await Job.create(req.body);

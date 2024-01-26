@@ -12,16 +12,25 @@ const PostJob = () => {
     postingDate: "",
     experienceLevel: "",
     jobType: "",
-    companylogo: "",
+    companyLogo: "",
     description: "",
     postedBy: "",
     applicationDeadline: "",
-    joblink: "",
+    jobLink: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/jobs/${id}`, { method: "POST" });
+    console.log(formData);
+    const data = JSON.stringify(formData);
+    console.log(data);
+    fetch("http://localhost:5000/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: data,
+    });
   };
 
   const onChange = (e) => {
@@ -133,7 +142,7 @@ const PostJob = () => {
                 <label className="post-input-label">Company Logo</label>
                 <input
                   className="post-job-input"
-                  type="file"
+                  type="text"
                   name="companyLogo"
                   onChange={onChange}
                 />
@@ -170,7 +179,7 @@ const PostJob = () => {
                 <input
                   className="post-job-input"
                   type="text"
-                  name="companyName"
+                  name="postedBy"
                   onChange={onChange}
                 />
               </div>

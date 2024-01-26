@@ -33,7 +33,7 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/myjobs/sushaj")
+    fetch("http://localhost:5000/myjobs/sdfsdf")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

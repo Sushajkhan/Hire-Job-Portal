@@ -31,8 +31,18 @@ const UpdateJob = () => {
       });
   }, []);
 
-  const handleSubmit = () => {
-    fetch(`http://localhost:5000/jobs/${id}`, { method: "UPDATE" });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    const data = JSON.stringify(formData);
+    console.log(data);
+    fetch(`http://localhost:5000/jobs/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: data,
+    });
   };
 
   const onChange = (e) => {

@@ -46,7 +46,6 @@ const jobSchema = new Schema(
     jobLink: {
       type: String,
       required: true,
-      unique: true,
     },
     postedBy: {
       type: String,
