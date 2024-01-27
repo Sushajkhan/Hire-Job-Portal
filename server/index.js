@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const jobRoute = require("./routes/jobRoute");
 const authRoute = require("./routes/authRoute");
+const cookieParser = require("cookie-parser");
 dotenv.config();
 
 const app = express();
@@ -29,9 +30,17 @@ const connectDB = async () => {
 
 //middlewares
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(jobRoute);
 app.use(authRoute);
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+
+  return res.status(errorStatus).send(errorMessage);
+});
 
 app.listen(port, () => {
   connectDB();
