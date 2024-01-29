@@ -39,7 +39,7 @@ const getJob = async (req, res, next) => {
   }
 };
 
-const updateJob = async (req, res) => {
+const updateJob = async (req, res, next) => {
   try {
     if (!mongoose.isValidObjectId(req.params.id)) {
       return next(createError(422, "Parameter is not a valid"));
@@ -58,7 +58,7 @@ const updateJob = async (req, res) => {
   }
 };
 
-const deleteJob = async (req, res) => {
+const deleteJob = async (req, res, next) => {
   try {
     if (!mongoose.isValidObjectId(req.params.id)) {
       return next(createError(422, "Parameter is not a valid"));
@@ -76,7 +76,7 @@ const deleteJob = async (req, res) => {
   }
 };
 
-const getJobsByEmail = async (req, res) => {
+const getJobsByEmail = async (req, res, next) => {
   try {
     const jobs = await Job.find({ postedBy: req.params.email });
     res.send(jobs);

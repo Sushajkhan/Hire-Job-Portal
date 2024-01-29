@@ -16,7 +16,7 @@ const register = async (req, res, next) => {
 };
 const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return next(createError(404, "user not found"));
     }
@@ -39,11 +39,14 @@ const login = async (req, res, next) => {
     next(err);
   }
 };
-const logout = async (req, res) => {
-  try {
-  } catch (err) {
-    next(err);
-  }
+const logout = async (req, res, next) => {
+  res
+    .clearCookie("accesToken", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .send("user has benn logged out");
 };
 
 module.exports = { register, login, logout };

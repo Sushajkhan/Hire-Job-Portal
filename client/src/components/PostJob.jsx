@@ -70,7 +70,7 @@ const PostJob = () => {
             </div>
             <div className="post-job-row">
               <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">MInimum Salary ₹</label>
+                <label className="post-input-label">Minimum Salary ₹</label>
                 <input
                   className="post-job-input"
                   type="number"

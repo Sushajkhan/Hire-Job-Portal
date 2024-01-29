@@ -31,7 +31,7 @@ const connectDB = async () => {
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(jobRoute);
 app.use(authRoute);
 
