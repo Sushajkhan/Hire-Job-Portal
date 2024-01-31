@@ -12,7 +12,7 @@
     <a href="https://github.com/Sushajkhan/Screen"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://hire-mu.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/Sushajkhan/Hire-Job-Porta/issues">Report Bug</a>
     ·
