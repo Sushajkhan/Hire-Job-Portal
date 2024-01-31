@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/register", {
+      const res = await fetch(`${BASE_URL}/register`, {
         method: "POST",
 
         headers: {

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const JobDetails = () => {
   const [job, setJob] = useState([]);
@@ -12,7 +13,7 @@ const JobDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs/${id}`)
+    fetch(`${BASE_URL}/jobs/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data);

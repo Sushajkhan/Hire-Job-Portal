@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import NotFound from "../pages/NotFound";
+import { BASE_URL } from "../utils/baseUrl";
 
 const PostJob = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const PostJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/jobs", {
+      const res = await fetch(`${BASE_URL}/jobs`, {
         method: "POST",
         credentials: "include",
         headers: {

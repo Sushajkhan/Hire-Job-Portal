@@ -10,6 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import NotFound from "./NotFound";
 import { toast } from "sonner";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const MyJobs = () => {
   const { user } = useContext(AuthContext);
@@ -39,7 +40,7 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/myjobs/${user._id}`, {
+    fetch(`${BASE_URL}/myjobs/${user._id}`, {
       method: "GET",
       credentials: "include",
     })

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "sonner";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const UpdateJob = () => {
   const { user } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const UpdateJob = () => {
   }, [user]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs/${id}`)
+    fetch(`${BASE_URL}/jobs/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setFormData(data);
@@ -47,7 +48,7 @@ const UpdateJob = () => {
     console.log(formData);
     const data = JSON.stringify(formData);
     console.log(data);
-    fetch(`http://localhost:5000/jobs/${id}`, {
+    fetch(`${BASE_URL}/jobs/${id}`, {
       method: "PUT",
       credentials: "include",
       headers: {

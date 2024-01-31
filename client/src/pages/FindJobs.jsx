@@ -9,6 +9,7 @@ import { FiMapPin, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import NotFound from "./NotFound";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const FindJobs = () => {
   const [selectedCategory, setSelecetedCategory] = useState(null);
@@ -21,7 +22,7 @@ const FindJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/jobs")
+    fetch(`${BASE_URL}/jobs`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

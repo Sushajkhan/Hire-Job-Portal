@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "sonner";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Navbar = () => {
 
   const handleLogOut = async () => {
     try {
-      await fetch("http://localhost:5000/logout", {
+      await fetch(`${BASE_URL}/logout`, {
         method: "POST",
         credentials: "include",
         headers: {

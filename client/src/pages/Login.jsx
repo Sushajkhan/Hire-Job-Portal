@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "sonner";
+import { BASE_URL } from "../utils/baseUrl.js";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -18,7 +19,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         credentials: "include",
         headers: {

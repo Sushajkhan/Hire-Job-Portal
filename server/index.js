@@ -14,7 +14,7 @@ const corsOptions = {
 };
 
 app.get("/", (req, res) => {
-  res.send("api working");
+  res.send("TaDa...");
 });
 
 // connect db
