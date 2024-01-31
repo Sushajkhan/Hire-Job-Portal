@@ -6,8 +6,12 @@ import { FaEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoIosArrowDropleft } from "react-icons/io";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const MyJobs = () => {
+  const { user } = useContext(AuthContext);
+
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -33,13 +37,16 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/myjobs/sdfsdf")
+    fetch(`http://localhost:5000/myjobs/${user.email}`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
         setIsLoading(false);
       });
-  }, []);
+  }, [user.email]);
 
   const handleSearch = () => {
     const filter = jobs.filter(

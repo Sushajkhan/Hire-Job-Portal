@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import JobCard from "../components/JobCard";
 import Sidebar from "../components/Sidebar";
@@ -7,6 +7,7 @@ import NewsLetter from "../components/NewsLetter";
 import Banner from "../components/Banner";
 import { FiMapPin, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const FindJobs = () => {
   const [selectedCategory, setSelecetedCategory] = useState(null);
@@ -15,9 +16,11 @@ const FindJobs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     setIsLoading(true);
-    fetch("jobs.json")
+    fetch("http://localhost:5000/jobs")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -103,82 +106,83 @@ const FindJobs = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="max-w-screen-2xl container mx-auto lg:px-24 px-4 py-12 ">
-        <form className="max-w-screen-2xl container mx-auto lg:px-24 px-4 ">
-          <div className="flex justify-start md:flex-row flex-col md:gap-0 gap-4">
-            <div className="flex md:rounded-s-md rounded shadow-sm ring-1 ring-inset ring-gray-300  md:w-1/2 w-full ">
-              <input
-                type="text"
-                name="title"
-                id="title"
-                placeholder="What you are looking for ?"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-8 text-text placeholder:text-gray-400 focus:right-0 sm:text-sm sm:leading-6 "
-                onChange={handleInputChange}
-                value={query}
-              />
-              <FiSearch className="absolute mt-2.5 ml-2 text-gray-400" />
-            </div>
-            <div className="flex md:rounded-s-none rounded shadow-sm ring-1 ring-inset ring-gray-300  md:w-1/3 w-full ">
-              <input
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Location"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-8 text-text placeholder:text-gray-400 focus:right-0 sm:text-sm sm:leading-6 "
-              />
-              <FiMapPin className="absolute mt-2.5 ml-2 text-gray-400" />
-            </div>
-            <button type="submit" className="bg-green text-white py-2 px-8 ">
-              <Link to="/find-jobs">Search</Link>
-            </button>
+      {user && (
+        <div>
+          <Navbar />
+          <div className="max-w-screen-2xl container mx-auto lg:px-24 px-4 py-12 ">
+            <form className="max-w-screen-2xl container mx-auto lg:px-24 px-4 ">
+              <div className="flex justify-start md:flex-row flex-col md:gap-0 gap-4">
+                <div className="flex md:rounded-s-md rounded shadow-sm ring-1 ring-inset ring-gray-300  w-full ">
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="What you are looking for ?"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-8 text-text placeholder:text-gray-400 focus:right-0 sm:text-sm sm:leading-6 "
+                    onChange={handleInputChange}
+                    value={query}
+                  />
+                  <FiSearch className="absolute mt-2.5 ml-2 text-gray-400" />
+                </div>
+
+                <button
+                  type="submit"
+                  className="bg-green text-white py-2 px-8 "
+                >
+                  <Link to="/find-jobs">Search</Link>
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      <div className="bg-background md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
-        <div className="bg-white p-4 rounded">
-          <Sidebar handleChange={handleChange} handleClick={handleClick} />
-        </div>
-
-        <div className="col-span-2 bg-white p-4 rounded">
-          {isLoading ? (
-            <p className="font-medium">Loading...</p>
-          ) : result.length > 0 ? (
-            <Jobs result={result} />
-          ) : (
-            <>
-              <h3 className="text-lg font-bold mb-2">{result.length} jobs</h3>
-              <p>No data found</p>
-            </>
-          )}
-
-          {result.length > 0 ? (
-            <div className="flex justify-center mt-4 space-x-8">
-              <button onClick={prevPage} disabled={currentPage === 1}>
-                Previous
-              </button>
-              <span className="mx-2">
-                Page {currentPage} of
-                {Math.ceil(filteredItems.length / itemsPerPage)}
-              </span>
-              <button
-                onClick={nextPage}
-                disabled={
-                  currentPage === Math.ceil(filteredItems.length / itemsPerPage)
-                }
-              >
-                Next
-              </button>
+          <div className="bg-background md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
+            <div className="bg-white p-4 rounded">
+              <Sidebar handleChange={handleChange} handleClick={handleClick} />
             </div>
-          ) : (
-            ""
-          )}
-        </div>
 
-        <div className="bg-white p-4 rounded">
-          <NewsLetter />
+            <div className="col-span-2 bg-white p-4 rounded">
+              {isLoading ? (
+                <p className="font-medium">Loading...</p>
+              ) : result.length > 0 ? (
+                <Jobs result={result} />
+              ) : (
+                <>
+                  <h3 className="text-lg font-bold mb-2">
+                    {result.length} jobs
+                  </h3>
+                  <p>No data found</p>
+                </>
+              )}
+
+              {result.length > 0 ? (
+                <div className="flex justify-center mt-4 space-x-8">
+                  <button onClick={prevPage} disabled={currentPage === 1}>
+                    Previous
+                  </button>
+                  <span className="mx-2">
+                    Page {currentPage} of
+                    {Math.ceil(filteredItems.length / itemsPerPage)}
+                  </span>
+                  <button
+                    onClick={nextPage}
+                    disabled={
+                      currentPage ===
+                      Math.ceil(filteredItems.length / itemsPerPage)
+                    }
+                  >
+                    Next
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+
+            <div className="bg-white p-4 rounded">
+              <NewsLetter />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

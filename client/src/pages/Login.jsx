@@ -31,7 +31,7 @@ const Login = () => {
         dispatch({ type: "LOGIN", payload: data });
         toast.success(`Welcome ${data.username}`);
 
-        navigate("/");
+        navigate("/findjobs");
       } else {
         toast.error(` ${data.error}`);
       }

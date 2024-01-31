@@ -49,7 +49,6 @@ const jobSchema = new Schema(
     },
     postedBy: {
       type: String,
-      required: true,
     },
     applicationDeadline: {
       type: Date,

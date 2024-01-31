@@ -18,9 +18,9 @@ const LocationFilter = ({ handleChange }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value="london"
+          value="kochi"
           name="test"
-          title="London"
+          title="Kochi"
         />
         <InputField
           handleChange={handleChange}

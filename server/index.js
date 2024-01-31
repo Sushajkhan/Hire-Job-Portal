@@ -35,13 +35,6 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(jobRoute);
 app.use(authRoute);
 
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
-
-  return res.status(errorStatus).send(errorMessage);
-});
-
 app.listen(port, () => {
   connectDB();
   console.log(`server running on ${port}`);
