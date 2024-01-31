@@ -32,18 +32,9 @@ const Navbar = () => {
     }
   };
 
-  const navItems = [
-    { path: "/", title: "Home" },
-    { path: "/find-jobs", title: "Find Jobs" },
-
-    { path: "/myjobs", title: "My Jobs" },
-    { path: "/post-job", title: "Upload A Job" },
-    { path: "/about", title: "About Us" },
-  ];
-
   return (
     <>
-      <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
+      <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4  ">
         <nav className="flex justify-between items-center py-6">
           <a
             href="/"
@@ -64,8 +55,8 @@ const Navbar = () => {
             <span>Hire</span>
           </a>
 
-          <ul className="hidden md:flex gap-12">
-            <li className="text-sm text-primary">
+          <ul className="hidden md:flex gap-12    ">
+            <li className="text-sm text-primary ">
               <NavLink
                 to="/"
                 className={({ isActive }) => (isActive ? "active" : "")}
@@ -74,7 +65,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             {user && (
-              <li className="text-sm text-primary">
+              <li className="text-sm text-primary ">
                 <NavLink
                   to="/findjobs"
                   className={({ isActive }) => (isActive ? "active" : "")}
@@ -169,30 +160,36 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="text-sm text-primary py-1">
-              <NavLink
-                to="/findjobs"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Find Jobs
-              </NavLink>
-            </li>
-            <li className="text-sm text-primary py-1">
-              <NavLink
-                to="/post-job"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Post A Job
-              </NavLink>
-            </li>
-            <li className="text-sm text-primary py-1">
-              <NavLink
-                to="/myjobs"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                My Jobs
-              </NavLink>
-            </li>
+            {user && (
+              <li className="text-sm text-primary py-1">
+                <NavLink
+                  to="/findjobs"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Find Jobs
+                </NavLink>
+              </li>
+            )}
+            {user?.isEmployer && (
+              <li className="text-sm text-primary py-1">
+                <NavLink
+                  to="/post-job"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Post A Job
+                </NavLink>
+              </li>
+            )}
+            {user?.isEmployer && (
+              <li className="text-sm text-primary py-1">
+                <NavLink
+                  to="/myjobs"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  My Jobs
+                </NavLink>
+              </li>
+            )}
             <li className="text-sm text-primary py-1">
               <NavLink
                 to="/about"

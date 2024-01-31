@@ -18,9 +18,15 @@ const JobTypeFilter = ({ handleChange }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value="full-time"
-          name="test"
-          title="Full-time"
+          value="intern"
+          name="intern"
+          title="Intern"
+        />
+        <InputField
+          handleChange={handleChange}
+          value="remote"
+          name="remote"
+          title="Remote"
         />
         <InputField
           handleChange={handleChange}
@@ -30,9 +36,9 @@ const JobTypeFilter = ({ handleChange }) => {
         />
         <InputField
           handleChange={handleChange}
-          value="temporary"
-          name="test"
-          title="Temporary"
+          value="full-time"
+          name="full-time"
+          title="Full-Time"
         />
       </div>
     </div>

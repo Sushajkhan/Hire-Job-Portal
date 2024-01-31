@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiCalendar, FiClock, FiDollarSign, FiMapPin } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -6,20 +6,27 @@ const JobCard = ({ data }) => {
   const {
     companyName,
     jobTitle,
-    companyLogo,
-    minPrice,
-    maxPrice,
-    salaryType,
+    minSalary,
+    maxSalary,
     jobLocation,
     postingDate,
-    employmentType,
+    jobType,
     description,
   } = data;
 
+  const maxDescriptionLength = 300;
+
+  const shortDescription =
+    description.length > maxDescriptionLength
+      ? description.slice(0, maxDescriptionLength) + "..."
+      : description;
   return (
     <section className="card bg-white rounded-lg">
-      <Link to={"/"} className="flex gap-4 flex-col sm:flex-row items-start">
-        <img src={companyLogo} alt="" />
+      <Link
+        to={`/view-job/${data?._id}`}
+        className="flex gap-4 flex-col sm:flex-row items-start"
+      >
+        <img src="/companylogo.svg" alt="" />
         <div>
           <h4 className="text-primary mb-1">{companyName}</h4>
           <h3 className="text-lg font-semibold mb-2">{jobTitle}</h3>
@@ -31,18 +38,18 @@ const JobCard = ({ data }) => {
             </span>
             <span className="flex items-center gap-2 bg-background ">
               <FiClock />
-              {employmentType}
+              {jobType}
             </span>
             <span className="flex items-center gap-2 bg-background">
-              ₹ {minPrice}-{maxPrice}
+              ₹ {minSalary}-{maxSalary}
             </span>
             <span className="flex items-center gap-2 bg-background">
               <FiCalendar />
-              {postingDate}
+              {postingDate ? new Date(postingDate).toLocaleDateString() : ""}
             </span>
           </div>
 
-          <p className="text-sm text-text">{description}</p>
+          <p className="text-sm text-text">{shortDescription}</p>
         </div>
       </Link>
     </section>

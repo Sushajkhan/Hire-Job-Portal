@@ -18,15 +18,27 @@ const WorkExperienceFilter = ({ handleChange }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value="Internship"
+          value="fresher"
           name="test"
-          title="Internship"
+          title="Fresher"
         />
         <InputField
           handleChange={handleChange}
-          value="work remotely"
+          value="0-2years"
           name="test"
-          title="Work remotely"
+          title="0-2 Years"
+        />
+        <InputField
+          handleChange={handleChange}
+          value="2-5years"
+          name="test"
+          title="2-5 Years"
+        />
+        <InputField
+          handleChange={handleChange}
+          value="5-10years"
+          name="test"
+          title="5-10 Years"
         />
       </div>
     </div>

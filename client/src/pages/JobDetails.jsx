@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 const JobDetails = () => {
   const [job, setJob] = useState([]);
-
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   const { id } = useParams();
 
   useEffect(() => {
@@ -14,7 +17,7 @@ const JobDetails = () => {
       .then((data) => {
         setJob(data);
       });
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -23,14 +26,16 @@ const JobDetails = () => {
       <div>
         <div className="text-black text-2xl font-medium  bg-gray-100  w-full flex justify-center items-center px-16 py-10 max-md:max-w-full max-md:px-5">
           {job.jobTitle}
-          <span className="text-lg">({job.jobType}) </span> - {job.companyName}
+          <span className="">({job.jobType}) </span> - {job.companyName}
         </div>
         <div className="flex justify-center items-center gap-5 mt-6">
           <button className="inline-block rounded border border-current px-8 py-3 text-sm font-medium text-green transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring">
-            View Company
+            <Link to={`https://www.google.com/search?q=${job.companyName}`}>
+              Know About Company
+            </Link>
           </button>
           <button className="inline-block rounded bg-green px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring">
-            Apply This Job
+            <Link to={job.jobLink}>Apply This Job </Link>
           </button>
         </div>
         <div className="text-black text-sm leading-7  xl:px-24 px-4 mx-auto">
@@ -38,61 +43,33 @@ const JobDetails = () => {
           <span className="">Bachelor</span>
           <br />
           <span className="font-bold">Experience Level:</span>{" "}
-          <span className="">Mid level</span>
-          <br />
-          <span className="font-bold">Experience Length:</span>{" "}
-          <span className="">2 years</span>
+          <span className="">{job.experienceLevel}</span>
           <br />
           <span className="font-bold">Location:</span>{" "}
-          <span className="">San Francisco, USA</span>
+          <span className="">{job.jobLocation}</span>
           <br />
-          <span className="font-bold">Application Deadline:</span>{" "}
-          <span className="">12/08/2022</span>
+          <span className="font-bold">Application Deadline:</span>
+          <span className="">
+            {job.applicationDeadline
+              ? new Date(job.applicationDeadline).toLocaleDateString()
+              : ""}
+          </span>
           <br />
-          <span className="font-bold ">Salary Range:</span>{" "}
-          <span className="">$ 105,000 - 150,000</span>
+          <span className="font-bold ">Salary Range:</span>
+          <span className="">
+            ₹ {job.minSalary} - ₹{job.maxSalary}
+          </span>
           <br />
           <br />
           <p className="font-bold">Job Description</p>
-          <p>
-            We are searching for a Laravel developer to build web applications
-            for our company. In this role, you will design and create projects
-            using Laravel framework and PHP, and assist the team in delivering
-            high-quality web applications, services, and tools for our business.
-            <br />
-            <br />
-            <p></p>
-            To ensure success as a Laravel developer you should be adept at
-            utilizing Laravel's GUI and be able to design a PHP application from
-            start to finish. A top-notch Laravel developer will be able to
-            leverage their expertise and experience of the framework to
-            independently produce complete solutions in a short turnaround time.
-            <br />
-            <br />
-            Laravel Developer Requirements:
-            <br /> A degree in programming, computer science, or a related
-            field. Experience working with PHP, performing unit testing, and
-            managing APIs such as REST. A solid understanding of application
-            design using Laravel. Knowledge of database design and querying
-            using SQL. Proficiency in HTML and JavaScript. Experience developing
-            in Vue is considered a plus. Practical experience using the MVC
-            architecture. The ability to work on LAMP development environment
-            Problem-solving skills and critical mindset. Great communication
-            skills. The desire and ability to learn. Responsibilities:
-            Discussing project aims with the client and development team.
-            Designing and building web applications using Laravel.
-            Troubleshooting issues in the implementation and debug builds.
-            Working with front-end and back-end developers on projects. Testing
-            functionality for users and the backend. Ensuring that integrations
-            run smoothly. Scaling projects based on client feedback. Recording
-            and reporting on work done in Laravel. Maintaining web-based
-            applications. Presenting work in meetings with clients and
-            management.
-          </p>
+          <p>{job.description}</p>
         </div>
       </div>
       <div className="flex justify-center items-center gap-5 mt-6">
-        <button className="flex gap-2 rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring">
+        <button
+          className="flex gap-2 rounded bg-black px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring"
+          onClick={handleGoBack}
+        >
           <IoArrowBackCircleOutline className="w-5 h-5" />
           Back
         </button>

@@ -6,15 +6,7 @@ const SalaryFilter = ({ handleChange, handleClick }) => {
   return (
     <div>
       <h4 className="text-lg font-medium mb-2">Salary</h4>
-      <div>
-        <Button onClickHandler={handleClick} value="" title="Hourly" />
-        <Button
-          onClickHandler={handleClick}
-          value="Monthly"
-          title="Monthly"
-        />{" "}
-        <Button onClickHandler={handleClick} value="Yearly" title="Yearly" />
-      </div>
+
       <div>
         <label className="sidebar-label-container text-sm">
           <input
@@ -28,15 +20,15 @@ const SalaryFilter = ({ handleChange, handleClick }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value={50}
+          value={20}
           name="test"
-          title="< 50K"
+          title="< 20K"
         />
         <InputField
           handleChange={handleChange}
-          value={80}
+          value={50}
           name="test"
-          title="< 80K"
+          title="< 40K"
         />{" "}
         <InputField
           handleChange={handleChange}

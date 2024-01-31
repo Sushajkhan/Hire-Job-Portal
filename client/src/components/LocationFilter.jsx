@@ -24,21 +24,21 @@ const LocationFilter = ({ handleChange }) => {
         />
         <InputField
           handleChange={handleChange}
-          value="boston"
+          value="bangalore"
           name="test"
-          title="Boston"
+          title="Bangalore"
         />
         <InputField
           handleChange={handleChange}
-          value="seattle"
+          value="trivandrum"
           name="test"
-          title="Seattle"
+          title="Trivandrum"
         />
         <InputField
           handleChange={handleChange}
-          value="madrid"
+          value="elhi"
           name="test"
-          title="Madrid"
+          title="Delhi"
         />
       </div>
     </div>
