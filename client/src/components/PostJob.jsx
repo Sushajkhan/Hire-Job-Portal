@@ -31,7 +31,7 @@ const PostJob = () => {
     if (user) {
       setFormData({ ...formData, user: user._id });
     }
-  }, [user]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
