@@ -60,7 +60,7 @@ const Banner = () => {
         </div>
 
         <div>
-          <img src="\image 138.png" alt="" className="w-[420px] bg-contain" />
+          <img src="\banner.png" alt="" className="w-[420px] bg-contain" />
         </div>
       </div>
     </div>

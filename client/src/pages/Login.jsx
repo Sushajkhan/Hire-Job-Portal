@@ -79,8 +79,6 @@ const Login = () => {
             Login
           </button>
 
-          {/* {error && error} */}
-
           <div className="text-center text-gray-400">
             Dont'have an account?
             <span className="font-bold text-green">

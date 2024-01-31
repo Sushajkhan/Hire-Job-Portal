@@ -113,11 +113,7 @@ const SignUp = () => {
           >
             Sign Up
           </button>
-          {/* {err && err} */}
-          {/* <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white">
-            <img src="google.svg" alt="img" className="w-6 h-6 inline mr-2" />
-            Sign in with Google
-          </button> */}
+
           <div className="text-center text-gray-400">
             Already have an account?
             <span className="font-bold text-black">
@@ -128,7 +124,7 @@ const SignUp = () => {
 
         <div className="relative">
           <img
-            src="login (2).jpg"
+            src="login.jpg"
             alt="img"
             className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover object-right"
           />
