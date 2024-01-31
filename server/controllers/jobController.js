@@ -87,8 +87,10 @@ const deleteJob = async (req, res) => {
 
 const getJobsByUser = async (req, res) => {
   try {
-    const jobs = await Job.find({ postedBy: req.params.email });
-    res.send(jobs);
+    const userId = req.params.id;
+
+    const jobs = await Job.find({ user: userId });
+    res.json(jobs);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

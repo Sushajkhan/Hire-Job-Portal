@@ -11,9 +11,7 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    companyLogo: {
-      type: String,
-    },
+
     minSalary: {
       type: Number,
       required: true,
@@ -47,14 +45,18 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    postedBy: {
-      type: String,
-    },
+
     applicationDeadline: {
       type: Date,
       required: true,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
   },
+
   {
     timestamps: true,
   }

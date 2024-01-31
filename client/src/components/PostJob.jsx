@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Navbar from "./Navbar";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import NotFound from "../pages/NotFound";
 
 const PostJob = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     jobTitle: "",
@@ -20,30 +23,46 @@ const PostJob = () => {
     postedBy: "",
     applicationDeadline: "",
     jobLink: "",
+    user: "",
   });
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (user) {
+      setFormData({ ...formData, user: user._id });
+    }
+  }, [user]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    const data = JSON.stringify(formData);
-    console.log(data);
-    fetch("http://localhost:5000/jobs", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: data,
-    });
+    try {
+      const res = await fetch("http://localhost:5000/jobs", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.error) {
+        return toast.error("Fill all the required fields");
+      } else {
+        toast.success("Job Posted Successfully");
+        navigate("/myjobs");
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
   };
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData.user);
   };
 
   return (
     <>
-      {user.isEmployer === true && (
+      {user.isEmployer ? (
         <div>
           <Navbar />
 
@@ -62,6 +81,7 @@ const PostJob = () => {
                       type="text"
                       name="jobTitle"
                       onChange={onChange}
+                      required
                     />
                   </div>
                   <div className="lg:w-1/2 w-full">
@@ -71,6 +91,7 @@ const PostJob = () => {
                       type="text"
                       name="companyName"
                       onChange={onChange}
+                      required
                     />
                   </div>
                 </div>
@@ -82,6 +103,7 @@ const PostJob = () => {
                       type="number"
                       name="minSalary"
                       onChange={onChange}
+                      required
                     />
                   </div>
                   <div className="lg:w-1/2 w-full">
@@ -91,6 +113,7 @@ const PostJob = () => {
                       type="number"
                       name="maxSalary"
                       onChange={onChange}
+                      required
                     />
                   </div>
                 </div>
@@ -103,6 +126,7 @@ const PostJob = () => {
                       type="text"
                       name="jobLocation"
                       onChange={onChange}
+                      required
                     />
                   </div>
                   <div className="lg:w-1/2 w-full">
@@ -112,6 +136,7 @@ const PostJob = () => {
                       type="text"
                       name="jobLink"
                       onChange={onChange}
+                      required
                     />
                   </div>
                 </div>
@@ -124,6 +149,7 @@ const PostJob = () => {
                       type="date"
                       name="postingDate"
                       onChange={onChange}
+                      required
                     />
                   </div>
                   <div className="lg:w-1/2 w-full">
@@ -132,6 +158,7 @@ const PostJob = () => {
                       name="experienceLevel"
                       className="post-job-input"
                       onChange={onChange}
+                      required
                     >
                       <option value="fresher">Fresher</option>
                       <option value="2year">0-2 Years</option>
@@ -150,6 +177,7 @@ const PostJob = () => {
                       name="jobType"
                       className="post-job-input"
                       onChange={onChange}
+                      required
                     >
                       <option value="intern">Intern</option>
 
@@ -168,6 +196,7 @@ const PostJob = () => {
                       type="date"
                       name="applicationDeadline"
                       onChange={onChange}
+                      required
                     />
                   </div>
                 </div>
@@ -193,6 +222,8 @@ const PostJob = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <NotFound />
       )}
     </>
   );

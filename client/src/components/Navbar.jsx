@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Navbar = () => {
       });
 
       dispatch({ type: "LOGOUT" });
+      toast.warning("Logged out");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -82,7 +84,7 @@ const Navbar = () => {
               </li>
             )}
 
-            {user && (
+            {user?.isEmployer && (
               <li className="text-sm text-primary">
                 <NavLink
                   to="/myjobs"
@@ -93,7 +95,7 @@ const Navbar = () => {
               </li>
             )}
 
-            {user && (
+            {user?.isEmployer && (
               <li className="text-sm text-primary">
                 <NavLink
                   to="/post-job"
@@ -115,14 +117,14 @@ const Navbar = () => {
           </ul>
 
           {user ? (
-            <div className="flex">
-              <img src="user.png" className="w-8 h-8 mr-1 " alt="" />
+            <div className="flex  sm:ml-80  ">
+              <img src="user.png" className="w-8 h-8 mr-1  " alt="" />
               <div className="mt-1 font-semibold ">
                 {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
               </div>
               <span></span>
               <button
-                className="py-1 px-5 ml-5 border rounded bg-green text-white"
+                className="py-1 px-5 ml-5 border  rounded bg-green text-white hidden lg:block"
                 onClick={handleLogOut}
               >
                 Logout
@@ -159,19 +161,62 @@ const Navbar = () => {
           }`}
         >
           <ul>
-            {navItems.map(({ path, title }) => (
-              <li key={path} className="text-sm text-primary py-1">
-                <NavLink
-                  to={path}
-                  className={({ isActive }) => (isActive ? "active" : "")}
+            <li className="text-sm text-primary py-1">
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="text-sm text-primary py-1">
+              <NavLink
+                to="/findjobs"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Find Jobs
+              </NavLink>
+            </li>
+            <li className="text-sm text-primary py-1">
+              <NavLink
+                to="/post-job"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Post A Job
+              </NavLink>
+            </li>
+            <li className="text-sm text-primary py-1">
+              <NavLink
+                to="/myjobs"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                My Jobs
+              </NavLink>
+            </li>
+            <li className="text-sm text-primary py-1">
+              <NavLink
+                to="/about"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                About
+              </NavLink>
+            </li>
+            <li className=" py-1">
+              {user ? (
+                <button
+                  className="text-white bg-black rounded px-2 py-1"
+                  onClick={handleLogOut}
                 >
-                  {title}
-                </NavLink>
-              </li>
-            ))}
-
-            <li className="py-1  ">
-              <Link to="/login">Login</Link>
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="py-1 px-2 border rounded bg-green text-white"
+                >
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const UpdateJob = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [job, setJob] = useState([]);
 
@@ -15,12 +20,18 @@ const UpdateJob = () => {
     postingDate: "",
     experienceLevel: "",
     jobType: "",
-    companylogo: "",
+    companyLogo: "",
     description: "",
     postedBy: "",
     applicationDeadline: "",
     jobLink: "",
+    user: "",
   });
+  useEffect(() => {
+    if (user) {
+      setFormData({ ...formData, user: user._id });
+    }
+  }, [user]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/jobs/${id}`)
@@ -38,11 +49,14 @@ const UpdateJob = () => {
     console.log(data);
     fetch(`http://localhost:5000/jobs/${id}`, {
       method: "PUT",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },
       body: data,
     });
+    toast.success("Updated");
+    navigate("/myjobs");
   };
 
   const onChange = (e) => {

@@ -8,6 +8,7 @@ import Banner from "../components/Banner";
 import { FiMapPin, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import NotFound from "./NotFound";
 
 const FindJobs = () => {
   const [selectedCategory, setSelecetedCategory] = useState(null);
@@ -106,7 +107,7 @@ const FindJobs = () => {
 
   return (
     <>
-      {user && (
+      {user ? (
         <div>
           <Navbar />
           <div className="max-w-screen-2xl container mx-auto lg:px-24 px-4 py-12 ">
@@ -182,6 +183,8 @@ const FindJobs = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <NotFound />
       )}
     </>
   );
