@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { BASE_URL } from "../utils/baseUrl.js";
@@ -53,9 +53,9 @@ const SignUp = () => {
           onSubmit={handleSubmit}
           className="flex flex-col justify-center p-8 md:p-14"
         >
-          <span className="mb-3 text-3xl font-bold">Welcome back</span>
+          <span className="mb-3 text-3xl font-bold">Create an Acoount!</span>
           <span className="font-light text-gray-400 mb-8">
-            Welcome back! Please enter your details
+            Please enter your details
           </span>
           <div className="py-4">
             <span className="mb-2 text-md">Username</span>
@@ -103,7 +103,7 @@ const SignUp = () => {
               />
               <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none dark:peer-focus:ring-black rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green"></div>
               <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 ">
-                Register as Recruiter
+                Iam a Recruiter
               </span>
             </label>
           </div>
@@ -112,7 +112,7 @@ const SignUp = () => {
             type="submit"
             className="w-full bg-green text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300"
           >
-            Sign Up
+            Register Account
           </button>
 
           <div className="text-center text-gray-400">

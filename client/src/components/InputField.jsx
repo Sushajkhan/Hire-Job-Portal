@@ -1,5 +1,3 @@
-import React from "react";
-
 const InputField = ({ handleChange, value, title, name }) => {
   return (
     <label className="sidebar-label-container text-sm">

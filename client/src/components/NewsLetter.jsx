@@ -1,4 +1,3 @@
-import React from "react";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 import { FaRocket } from "react-icons/fa";
 

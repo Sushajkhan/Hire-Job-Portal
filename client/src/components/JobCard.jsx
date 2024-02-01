@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { FiCalendar, FiClock, FiDollarSign, FiMapPin } from "react-icons/fi";
+import { FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ data }) => {

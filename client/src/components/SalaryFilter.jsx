@@ -1,5 +1,3 @@
-import React from "react";
-import Button from "./Button";
 import InputField from "./InputField";
 
 const SalaryFilter = ({ handleChange, handleClick }) => {
@@ -11,8 +9,8 @@ const SalaryFilter = ({ handleChange, handleClick }) => {
         <label className="sidebar-label-container text-sm">
           <input
             type="radio"
-            name="test"
-            id="test"
+            name="salaryFilter"
+            id="salaryFilter"
             value=""
             onChange={handleChange}
           />
@@ -20,20 +18,20 @@ const SalaryFilter = ({ handleChange, handleClick }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value={20}
-          name="test"
-          title="< 20K"
+          value={30000}
+          name="salaryFilter"
+          title="< 30K"
         />
         <InputField
           handleChange={handleChange}
-          value={50}
-          name="test"
-          title="< 40K"
+          value={80000}
+          name="salaryFilter"
+          title="< 80K"
         />{" "}
         <InputField
           handleChange={handleChange}
-          value={100}
-          name="test"
+          value={100000}
+          name="salaryFilter"
           title="< 100K"
         />
       </div>

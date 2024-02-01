@@ -37,5 +37,4 @@ app.use(authRoute);
 
 app.listen(port, () => {
   connectDB();
-  console.log(`server running on ${port}`);
 });

@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "./InputField";
 
 const LocationFilter = ({ handleChange }) => {
@@ -9,8 +8,8 @@ const LocationFilter = ({ handleChange }) => {
         <label className="sidebar-label-container text-sm">
           <input
             type="radio"
-            name="test"
-            id="test"
+            name="locationFilter"
+            id="locationFilter"
             value=""
             onChange={handleChange}
           />
@@ -19,25 +18,25 @@ const LocationFilter = ({ handleChange }) => {
         <InputField
           handleChange={handleChange}
           value="kochi"
-          name="test"
+          name="locationFilter"
           title="Kochi"
         />
         <InputField
           handleChange={handleChange}
           value="bangalore"
-          name="test"
+          name="locationFilter"
           title="Bangalore"
         />
         <InputField
           handleChange={handleChange}
           value="trivandrum"
-          name="test"
+          name="locationFilter"
           title="Trivandrum"
         />
         <InputField
           handleChange={handleChange}
-          value="elhi"
-          name="test"
+          value="Delhi"
+          name="locationFilter"
           title="Delhi"
         />
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import LocationFilter from "./LocationFilter";
 import SalaryFilter from "./SalaryFilter";
 import PostingDateFilter from "./PostingDateFilter";

@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import { FiMapPin, FiSearch } from "react-icons/fi";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import FindJobs from "../pages/FindJobs";
+import { useContext, useState } from "react";
+import { FiSearch } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Banner = () => {
@@ -32,7 +31,7 @@ const Banner = () => {
             </p>
           </div>
 
-          {!user && (
+          {!user ? (
             <form onSubmit={handleSubmit}>
               <div className="flex justify-start md:flex-row flex-col md:gap-0 gap-4">
                 <div className="flex md:rounded-s-md rounded shadow-sm ring-1 ring-inset ring-gray-300  md:w-full w-full ">
@@ -56,6 +55,8 @@ const Banner = () => {
                 </button>
               </div>
             </form>
+          ) : (
+            ""
           )}
         </div>
 

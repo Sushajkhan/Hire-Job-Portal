@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "./InputField";
 
 const JobTypeFilter = ({ handleChange }) => {
@@ -9,7 +8,7 @@ const JobTypeFilter = ({ handleChange }) => {
         <label className="sidebar-label-container text-sm">
           <input
             type="radio"
-            name="test"
+            name="jobTypeFilter"
             id="test"
             value=""
             onChange={handleChange}
@@ -18,26 +17,26 @@ const JobTypeFilter = ({ handleChange }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value="intern"
-          name="intern"
+          value="Intern"
+          name="jobTypeFilter"
           title="Intern"
         />
         <InputField
           handleChange={handleChange}
-          value="remote"
-          name="remote"
+          value="Remote"
+          name="jobTypeFilter"
           title="Remote"
         />
         <InputField
           handleChange={handleChange}
-          value="part-time"
-          name="test"
+          value="Part-time"
+          name="jobTypeFilter"
           title="Part-time"
         />
         <InputField
           handleChange={handleChange}
-          value="full-time"
-          name="full-time"
+          value="Full-Time"
+          name="jobTypeFilter"
           title="Full-Time"
         />
       </div>

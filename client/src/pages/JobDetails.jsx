@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -27,7 +27,7 @@ const JobDetails = () => {
       <div>
         <div className="text-black text-2xl font-medium  bg-gray-100  w-full flex justify-center items-center px-16 py-10 max-md:max-w-full max-md:px-5">
           {job.jobTitle}
-          <span className="">({job.jobType}) </span> - {job.companyName}
+          <span className=""> ({job.jobType}) </span> - {job.companyName}
         </div>
         <div className="flex justify-center items-center gap-5 mt-6">
           <button className="inline-block rounded border border-current px-8 py-3 text-sm font-medium text-green transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring">

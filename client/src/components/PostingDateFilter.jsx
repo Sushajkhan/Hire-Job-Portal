@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "./InputField";
 
 const PostingDateFilter = ({ handleChange }) => {
@@ -17,8 +16,8 @@ const PostingDateFilter = ({ handleChange }) => {
         <label className="sidebar-label-container text-sm">
           <input
             type="radio"
-            name="test"
-            id="test"
+            name="postDateFilter"
+            id="postDateFilter"
             value=""
             onChange={handleChange}
           />
@@ -27,20 +26,20 @@ const PostingDateFilter = ({ handleChange }) => {
         <InputField
           handleChange={handleChange}
           value={twentyFourHoursAgoDate}
-          name="test"
+          name="postDateFilter"
           title="Last 24 hours"
         />
         <InputField
           handleChange={handleChange}
           value={sevenDaysAgoDate}
-          name="test"
+          name="postDateFilter"
           title="Last 7 days"
         />
 
         <InputField
           handleChange={handleChange}
           value={thirtyDaysAgoDate}
-          name="test"
+          name="postDateFilter"
           title="Last month"
         />
       </div>

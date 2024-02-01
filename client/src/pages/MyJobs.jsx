@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
@@ -164,11 +164,13 @@ const MyJobs = () => {
                               </td>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                                {job.createdAt.slice(0, 10)}{" "}
+                                {new Date(job.createdAt).toLocaleDateString()}
                               </td>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                                {job.applicationDeadline.slice(0, 10)}
+                                {new Date(
+                                  job.applicationDeadline
+                                ).toLocaleDateString()}
                               </td>{" "}
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>

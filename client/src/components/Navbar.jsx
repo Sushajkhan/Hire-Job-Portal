@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
@@ -57,14 +57,16 @@ const Navbar = () => {
           </a>
 
           <ul className="hidden md:flex gap-12    ">
-            <li className="text-sm text-primary ">
-              <NavLink
-                to="/"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Home
-              </NavLink>
-            </li>
+            {user && (
+              <li className="text-sm text-primary ">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Home
+                </NavLink>
+              </li>
+            )}
             {user && (
               <li className="text-sm text-primary ">
                 <NavLink
@@ -97,15 +99,6 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
-
-            <li className="text-sm text-primary">
-              <NavLink
-                to="/about"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                About{" "}
-              </NavLink>
-            </li>
           </ul>
 
           {user ? (
@@ -191,14 +184,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
-            <li className="text-sm text-primary py-1">
-              <NavLink
-                to="/about"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                About
-              </NavLink>
-            </li>
+
             <li className=" py-1">
               {user ? (
                 <button

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
@@ -162,10 +162,10 @@ const UpdateJob = () => {
                   onChange={onChange}
                   value={formData.experienceLevel}
                 >
-                  <option value="fresher">Fresher</option>
-                  <option value="2year">0-2 Years</option>
-                  <option value="5year">2-5 Years</option>
-                  <option value="10year">5-10 Years</option>
+                  <option value="Fresher">Fresher</option>
+                  <option value="0-2 Years">0-2 Years</option>
+                  <option value="2-5 Years">2-5 Years</option>
+                  <option value="5-10 Years">5-10 Years</option>
 
                   <option value="anyExperience">Any experience</option>
                 </select>
@@ -174,15 +174,16 @@ const UpdateJob = () => {
 
             <div className="post-job-row">
               <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">Company Logo</label>
+                <label className="post-input-label">Application Deadline</label>
                 <input
                   className="post-job-input"
-                  type="file"
-                  name="companyLogo"
+                  type="date"
+                  name="applicationDeadline"
                   onChange={onChange}
-                  value={formData.companylogo}
+                  value={formData.applicationDeadline.slice(0, 10)}
                 />
               </div>
+
               <div className="lg:w-1/2 w-full">
                 <label className="post-input-label">Job Type</label>
                 <select
@@ -191,12 +192,12 @@ const UpdateJob = () => {
                   onChange={onChange}
                   value={formData.jobType}
                 >
-                  <option value="intern">Intern</option>
+                  <option value="Intern">Intern</option>
 
-                  <option value="remote">Remote</option>
-                  <option value="partTime">Part-Time</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Part-Time">Part-Time</option>
 
-                  <option value="fullTime">Full-Time</option>
+                  <option value="Full-Time">Full-Time</option>
                 </select>
               </div>
             </div>
@@ -211,28 +212,7 @@ const UpdateJob = () => {
                 value={formData.description}
               />
             </div>
-            <div className="post-job-row">
-              <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">Posted By</label>
-                <input
-                  className="post-job-input"
-                  type="text"
-                  name="companyName"
-                  onChange={onChange}
-                  value={formData.postedBy}
-                />
-              </div>
-              <div className="lg:w-1/2 w-full">
-                <label className="post-input-label">Application Deadline</label>
-                <input
-                  className="post-job-input"
-                  type="date"
-                  name="applicationDeadline"
-                  onChange={onChange}
-                  value={formData.applicationDeadline.slice(0, 10)}
-                />
-              </div>
-            </div>
+
             <button
               type="submit"
               onClick={handleSubmit}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Navbar from "./Navbar";
 import { AuthContext } from "../context/AuthContext";
@@ -161,10 +161,10 @@ const PostJob = () => {
                       onChange={onChange}
                       required
                     >
-                      <option value="fresher">Fresher</option>
-                      <option value="2year">0-2 Years</option>
-                      <option value="5year">2-5 Years</option>
-                      <option value="10year">5-10 Years</option>
+                      <option value="Fresher">Fresher</option>
+                      <option value="0-2 Years">0-2 Years</option>
+                      <option value="2-5 Years">2-5 Years</option>
+                      <option value="5-10 Years">5-10 Years</option>
 
                       <option value="anyExperience">Any experience</option>
                     </select>
@@ -180,12 +180,12 @@ const PostJob = () => {
                       onChange={onChange}
                       required
                     >
-                      <option value="intern">Intern</option>
+                      <option value="Intern">Intern</option>
 
-                      <option value="remote">Remote</option>
-                      <option value="partTime">Part-Time</option>
+                      <option value="Remote">Remote</option>
+                      <option value="Part-Time">Part-Time</option>
 
-                      <option value="fullTime">Full-Time</option>
+                      <option value="Full-Time">Full-Time</option>
                     </select>
                   </div>
                   <div className="lg:w-1/2 w-full">

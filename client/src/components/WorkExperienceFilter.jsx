@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "./InputField";
 
 const WorkExperienceFilter = ({ handleChange }) => {
@@ -9,8 +8,8 @@ const WorkExperienceFilter = ({ handleChange }) => {
         <label className="sidebar-label-container text-sm">
           <input
             type="radio"
-            name="test"
-            id="test"
+            name="workExperienceFilter"
+            id="workExperienceFilter"
             value=""
             onChange={handleChange}
           />
@@ -18,26 +17,26 @@ const WorkExperienceFilter = ({ handleChange }) => {
         </label>
         <InputField
           handleChange={handleChange}
-          value="fresher"
-          name="test"
+          value="Fresher"
+          name="workExperienceFilter"
           title="Fresher"
         />
         <InputField
           handleChange={handleChange}
-          value="0-2years"
-          name="test"
+          value="0-2 Years"
+          name="workExperienceFilter"
           title="0-2 Years"
         />
         <InputField
           handleChange={handleChange}
-          value="2-5years"
-          name="test"
+          value="2-5 Years"
+          name="workExperienceFilter"
           title="2-5 Years"
         />
         <InputField
           handleChange={handleChange}
-          value="5-10years"
-          name="test"
+          value="5-10 Years"
+          name="workExperienceFilter"
           title="5-10 Years"
         />
       </div>

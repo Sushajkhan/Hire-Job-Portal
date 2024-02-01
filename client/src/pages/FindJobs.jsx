@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import JobCard from "../components/JobCard";
 import Sidebar from "../components/Sidebar";
 import Jobs from "./Jobs";
 import NewsLetter from "../components/NewsLetter";
-import Banner from "../components/Banner";
-import { FiMapPin, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import NotFound from "./NotFound";
@@ -82,20 +81,12 @@ const FindJobs = () => {
     }
     if (selected) {
       filteredJobs = filteredJobs.filter(
-        ({
-          jobLocation,
-          maxPrice,
-          experienceLevel,
-          salaryType,
-          employmentType,
-          postingDate,
-        }) =>
+        ({ jobLocation, maxSalary, experienceLevel, jobType, postingDate }) =>
           jobLocation.toLowerCase() === selected.toLowerCase() ||
-          parseInt(maxPrice) <= parseInt(selected) ||
+          parseInt(maxSalary) <= parseInt(selected) ||
           postingDate >= selected ||
-          salaryType.toLowerCase() === selected.toLowerCase() ||
           experienceLevel.toLowerCase() === selected.toLowerCase() ||
-          employmentType.toLowerCase() === selected.toLowerCase()
+          jobType.toLowerCase() === selected.toLowerCase()
       );
     }
     // slice the data based on current page

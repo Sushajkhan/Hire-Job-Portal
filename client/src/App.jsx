@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import PostJob from "./components/PostJob";
 import FindJobs from "./pages/FindJobs";
 import Login from "./pages/Login";
@@ -25,7 +24,6 @@ function App() {
 
           <Route path="/post-job" element={<PostJob />} />
 
-          <Route path="/about" element={<About />} />
           <Route path="/myjobs" element={<MyJobs />} />
           <Route path="edit-job/:id" element={<UpdateJob />} />
           <Route path="view-job/:id" element={<JobDetails />} />
