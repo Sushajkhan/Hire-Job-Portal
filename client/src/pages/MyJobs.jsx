@@ -61,7 +61,7 @@ const MyJobs = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/jobs/${id}`, {
+    fetch(`${BASE_URL}/jobs/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
