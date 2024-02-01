@@ -164,13 +164,19 @@ const MyJobs = () => {
                               </td>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                                {new Date(job.createdAt).toLocaleDateString()}
+                                {job.postingDate
+                                  ? new Date(
+                                      job.postingDate
+                                    ).toLocaleDateString()
+                                  : ""}
                               </td>
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                                {new Date(
-                                  job.applicationDeadline
-                                ).toLocaleDateString()}
+                                {job.applicationDeadline
+                                  ? new Date(
+                                      job.applicationDeadline
+                                    ).toLocaleDateString()
+                                  : ""}
                               </td>{" "}
                               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
